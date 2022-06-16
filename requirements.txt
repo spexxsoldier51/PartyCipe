@@ -16,6 +16,5 @@ soupsieve==2.3.1
 sqlparse==0.4.2
 tzdata==2021.5
 django-utils-six
-json
 requests
 django-qr-code
