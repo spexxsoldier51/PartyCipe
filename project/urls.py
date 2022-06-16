@@ -24,14 +24,15 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', index, name='home'),
+    path('', Home),
+    #path('', index, name='home'),
     path('health/', health),
     path('admin/', admin.site.urls),
     
     path('accounts/', include('django.contrib.auth.urls')),
     path('signup/', SignUpView.as_view(), name='signup'),
 
-    path('', Home),
+    
 
     path('party/join', JoinParty),
     path('party/partipate', JoinParty),
