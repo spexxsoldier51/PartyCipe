@@ -124,7 +124,7 @@ def party_status(request, signed_pk):
                     tab_cocktails.append(listCocktails)
             retour = render(request, "party/page.html", {'party': theparty, 'participate' : participants, 'cocktails' : tab_cocktails})
         else:
-            retour = redirect("/partycipe/")
+            retour = redirect("/")
     except (BadSignature, party.DoesNotExist):
         raise Http404('No party matches the given query.')
     return retour
@@ -141,7 +141,7 @@ def party_join(request, signed_pk):
             participate_var.save()
     except (BadSignature, party.DoesNotExist):
         raise Http404('No party matches the given query.')
-    return redirect("/partycipe/")
+    return redirect("/")
 
 
 @login_required
@@ -177,7 +177,7 @@ def send_mail(request, signed_pk):
 
             message.send()
 
-            return redirect("/partycipe/")
+            return redirect("/")
     except (BadSignature, party.DoesNotExist):
         raise Http404('No party matches the given query.')
     return redirect("/")
