@@ -147,7 +147,6 @@ EMAIL_HOST_USER = 'noreply.partycipe@gmail.com'
 EMAIL_HOST_PASSWORD = 'uadjglstkypncczd'
 EMAIL_PORT = 587
 
-INTERNAL_IPS = ['127.0.0.1']
 
 ANGUAGE_CODE = 'en-us'
 
