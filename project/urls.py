@@ -20,6 +20,9 @@ from partycipe.views import *
 
 from welcome.views import index, health
 
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib.auth import views as auth_views
+
 urlpatterns = [
     path('', index, name='home'),
     path('health/', health),
