@@ -1,0 +1,36 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+{% load render_table from django_tables2 %}
+{% block title %}PartyCipe{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <header style="float: right">
+    <p>
+      Utilisateur : <b>{{ user.username }}</b>
+      <br>
+    <a class="btn btn-danger btn-sm" href="{% url 'logout' %}">Déconnexion</a>
+    <a class="btn btn-warning btn-sm" href="{% url 'password_change' %}">Changer de mot de passe</a></p>
+  </header>
+<br>
+<br>
+<br>
+<br>
+<br>
+  <a href="party/create"><button class="btn btn-primary btn-lg"><i class="fa-solid fa-plus"></i>  Créer une soirée</button></a>
+  <a href="party/join"><button class="btn btn-primary btn-lg"><i class="fa-solid fa-champagne-glasses"></i>  Rejoindre une soirée</button></a>
+<h3><b>Mes prochaines soirées :</b></h3>
+  {% render_table table %}
+<h3><b>Les soirées que j'organise :</b></h3>
+<div style="margin: auto; width:33%">
+  {% render_table table2 %}
+</div>
+
+
+{% else %}
+  <h2>Bienvenue</h2>
+  <p>Vous n'êtes pas connecté</p>
+  <a href="{% url 'login' %}"><button class="btn btn-primary">Se connecter</button></a>
+  <a href="{% url 'signup' %}"><button class="btn btn-primary">S'inscrire</button></a>
+{% endif %}
+{% endblock %}

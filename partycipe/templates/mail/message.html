@@ -1,0 +1,26 @@
+{% load static %}
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body class="bg-light">
+    <div class="container">
+      <div class="card my-10">
+        <div class="card-body">
+          <h1 class="h3 mb-2">PartyCipe</h1>
+          <hr>
+          <div class="space-y-3">
+            <p class="text-gray-700">
+            	Bonjour, <br><br>
+              	Ce message vous rappelle que vous êtes convié à la soirée {{ party.name }}, le {{ party.datehour }} à "{{ party.place }}" !
+              	<br><br>
+              N'oubliez pas ce rendez-vous !
+            </p>
+          </div>
+          <hr>
+          L'équipe PartyCipe
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

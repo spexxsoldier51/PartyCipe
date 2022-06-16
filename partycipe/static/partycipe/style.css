@@ -1,0 +1,31 @@
+.navbar
+    {
+    padding-bottom: 70px;
+    }
+h2
+    {
+    padding-bottom: 20px;
+    font-size: 45px;
+    }
+
+h3
+    {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    }
+
+.btn
+    {
+    margin-left: 5px;
+    margin-right: 5px;
+    }
+
+html
+    {
+    font-family: 'Archivo', sans-serif;
+    }
+
+a {
+  color: #0d6efd;
+  text-decoration: none;
+}
