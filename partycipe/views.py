@@ -135,7 +135,7 @@ def party_join(request, signed_pk):
     try:
         pk_ici = party.signer.unsign(signed_pk)
         party_id = party.objects.get(id=pk_ici)
-        verif = participate.objects.get(utilisateur=request.user, party=party_id).count()
+        verif = participate.objects.filtert(utilisateur=request.user, party=party_id)
         if(not verif):
             participate_var = participate(utilisateur=request.user, party=party_id, etat=True)
             participate_var.save()
