@@ -1,5 +1,4 @@
-# Openshift quickstart: Django
-
+# PartyCipe : Django + PostgeSQL in OpenShift
 This is a [Django](http://www.djangoproject.com) project that you can use as the starting point to develop your own and deploy it on an [OpenShift](https://github.com/openshift/origin) cluster.
 
 **NOTE:** This is the latest version of this example with Django 3.2 LTS which works with RHEL/Centos 8 and Python 3 only. If you are looking for the version for RHEL/Centos 7 or Python 2, it's in the [master branch](https://github.com/sclorg/django-ex/tree/master).
