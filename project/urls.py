@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 from welcome.views import index, health
+from partycipe.views import *
 
 urlpatterns = [
 path('admin/', admin.site.urls),
