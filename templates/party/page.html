@@ -1,0 +1,127 @@
+<!-- templates/registration/signup.html -->
+{% extends "base.html" %}
+
+{% block title %}PartyCipe - {{ party.name }}{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<script
+			  src="https://code.jquery.com/jquery-3.6.0.min.js"
+			  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			  crossorigin="anonymous"></script>
+
+  <h2>{{ party.name }}</h2>
+  <label><b>Résumé :</b></label> {{ party.resume }} <br>
+  <label><b>Lieux :</b></label> {{ party.place }} <br>
+  <label><b>Date :</b></label> {{ party.datehour }} <br>
+  <label><b>Prix :</b></label> {{ party.price }} <br>
+  <label><b>Lien Paypal :</b></label> <a href="{{ party.paypal }}">{{ party.paypal }}</a>
+  {% if participate %}
+  <h3> Liste des participants :</h3>
+    {% for obj in participate %}
+      {{obj.utilisateur}}<br/>
+    {% endfor %}
+  <br>
+  <a href="{{ request.path }}/mail"><button id="mail" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i>  Rappeler les participants</button></a>
+  {% else %}
+  <h3>Aucun participants pour le moment</h3>
+  {% endif %}
+<a href="{{ request.path }}/share"><button class="btn btn-primary"><i class="fa-solid fa-share-from-square"></i>  Inviter d'autres personnes</button></a>
+  <br>
+  <br>
+<h3>Ajouter des cocktails</h3>
+
+<input type="text" id="search" placeholder='Lister les cocktails'>
+<ul id="cocktails"></ul>
+  {% if cocktails %}
+  <h3> Vos cocktails :</h3>
+    {% for obj in cocktails %}
+  ________________________<br>
+<b>{{obj.strDrink}}</b><a href="{{ request.path }}/delete_cocktail/{{obj.idDrink}}"><button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button></a><br/>
+      {% for ingredient in obj.listIngredients %}
+      {% if ingredient != None %}
+        - {{ ingredient}} <br>
+      {% endif %}
+      {%endfor %}
+
+    {% endfor %}
+  <br>
+  <br>
+  {% endif %}
+
+  <script type="text/javascript">
+$(document).ready(function()
+  {
+
+  let cocktail = {};
+
+  function clearList()
+    {
+    document.getElementById("cocktails").innerHTML = ""
+    }
+
+  function appendList(id, nom)
+    {
+    const ligne = document.createElement("li");
+    ligne.innerHTML = nom;
+    const a = document.createElement("a");
+    a.setAttribute("href", window.location.href+"/add_cocktail/"+id)
+    const btn = document.createElement("button");
+    btn.setAttribute("class", "btn btn-success btn-sm")
+    btn.innerHTML = "Ajouter  ";
+    const i = document.createElement("i");
+    i.setAttribute("class", "fa-solid fa-plus")
+    btn.appendChild(i);
+    a.appendChild(btn);
+    ligne.appendChild(a);
+    document.getElementById("cocktails").append(ligne)
+    console.log(nom)
+    }
+
+
+  const searchByName = (drinkName) => {
+      fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drinkName}`)
+      .then(
+
+          function(response) {
+          if (response.status !== 200) {
+              console.log('Looks like there was a problem. Status Code: ' +
+              response.status);
+              return data;
+          }
+          response.json().then(function(data) {
+          console.log(data)
+              clearList()
+              data.drinks.forEach(drink => appendList(drink.idDrink, drink.strDrink))
+          });
+          }
+      )
+      .catch(function(err) {
+          console.log('Fetch Error :-S', err);
+      });
+  }
+
+
+
+    $("#search").keypress(function(event) {
+        if (event.which === 13) {
+            const drinkName = $('#search').val();
+            console.log("searchcall")
+            searchByName(drinkName);
+            console.log(cocktail);
+
+        }
+    });
+  });
+
+
+  </script>
+
+
+{% else %}
+  <h2>Bienvenue</h2>
+  <p>Vous n'êtes pas connecté</p>
+  <a href="{% url 'login' %}"><button class="btn btn-primary">Se connecter</button></a>
+  <a href="{% url 'signup' %}"><button class="btn btn-primary">S'inscrire</button></a>
+{% endif %}
+{% endblock %}

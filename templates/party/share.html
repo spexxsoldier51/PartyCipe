@@ -1,0 +1,28 @@
+<!-- templates/registration/signup.html -->
+{% extends "base.html" %}
+
+{% block title %}PartyCipe - {{ party.name }}{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+{% load qr_code %}
+
+Pour inviter des personnes, laissez les scanner le QR code, ou envoyez leur le lien suivant :
+<br>
+
+{% qr_from_text url size="M" %}
+
+<br>
+<a href="{{url}}">{{ url }}</a>
+<br>
+<br>
+<a href="/"><button class="btn btn-primary" >Retour à l'accueil</button></a>
+
+{% else %}
+  <h2>Bienvenue</h2>
+  <p>Vous n'êtes pas connecté</p>
+  <a href="{% url 'login' %}"><button class="btn btn-primary">Se connecter</button></a>
+  <a href="{% url 'signup' %}"><button class="btn btn-primary">S'inscrire</button></a>
+{% endif %}
+{% endblock %}
