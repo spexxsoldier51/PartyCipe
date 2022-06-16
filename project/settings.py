@@ -44,6 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'welcome',
+    'partycipe',
+    'bootstrap5',
+    'django_tables2',
+    'qr_code'
 ]
 
 MIDDLEWARE = [
