@@ -152,7 +152,7 @@ def create_party(request):
         form.save()
         try:
             party_id = party.objects.get(id=form.pk)
-            participate_var = participate(utilisateur=request.user, party=party_id, etat=False)
+            participate_var = participate(utilisateur=request.user, party=party_id, etat=True)
             participate_var.save()
         except (BadSignature, party.DoesNotExist):
             raise Http404('No party matches the given query.')
