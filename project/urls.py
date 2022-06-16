@@ -24,6 +24,7 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
+    path('', index, name='home'),
     path('admin/', admin.site.urls),
     path('partycipe/accounts/', include('django.contrib.auth.urls')),
     path('partycipe/signup/', SignUpView.as_view(), name='signup'),
