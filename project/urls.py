@@ -19,6 +19,9 @@ from django.urls import include, path, re_path
 
 from welcome.views import index, health
 from partycipe.views import *
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib.auth import views as auth_views
+
 
 urlpatterns = [
 path('admin/', admin.site.urls),
